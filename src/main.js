@@ -3,7 +3,9 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import Bulma from 'bulma'
 
+Vue.use(Bulma)
 Vue.config.productionTip = false
 
 new Vue({

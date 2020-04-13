@@ -1,3 +1,44 @@
 <template>
-  <span>Sou simin !</span>
+    <nav class="navbar is-success" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <router-link to="/home/admin" class="navbar-item">
+          <font-awesome-icon icon="dumbbell" class="has-text-dark" />
+          <span id="brand-name">
+            Meu treino
+          </span>
+          <font-awesome-icon icon="dumbbell" class="has-text-dark" />
+        </router-link>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+
+          <a class="navbar-item">
+            Documentation
+          </a>
+
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <a class="button is-light">
+              Sair
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
 </template>
+
+<style lang="scss">
+  #brand-name{
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+</style>

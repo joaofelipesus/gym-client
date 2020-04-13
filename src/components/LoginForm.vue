@@ -18,7 +18,7 @@
             <label class="label">Senha</label>
             <input v-model="password" id="password" class="input" type="password" requried>
           </div>
-          <button class="button is-medium-mobile is-fullwidth-mobile is-success">
+          <button id="btn-login" class="button is-medium-mobile is-fullwidth-mobile is-success">
             Entrar
           </button>
         </form>

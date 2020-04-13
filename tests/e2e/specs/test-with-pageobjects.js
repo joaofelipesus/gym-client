@@ -5,7 +5,7 @@
 // For more information on working with page objects see:
 //   https://nightwatchjs.org/guide/working-with-page-objects/
 ////////////////////////////////////////////////////////////////
-
+/*
 module.exports = {
   beforeEach: (browser) => browser.init(),
 
@@ -28,3 +28,4 @@ module.exports = {
     welcomeSection.expect.element('@cliPluginLinks').text.to.contain('e2e-nightwatch')
   }
 }
+*/

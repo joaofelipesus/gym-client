@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar is-success" role="navigation" aria-label="main navigation">
+    <nav id="admin-navbar" class="navbar is-success" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <router-link to="/home/admin" class="navbar-item">
           <font-awesome-icon icon="dumbbell" class="has-text-dark" />

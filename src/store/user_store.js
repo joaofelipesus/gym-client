@@ -17,6 +17,12 @@ export default new Vuex.Store({
     },
     load_session(state){
       state.user = JSON.parse(localStorage.getItem("user"));
+    },
+    finish_session(state){
+      state.authentication_token = ''
+      state.user = ''
+      localStorage.removeItem('authentication_token')
+      localStorage.removeItem('user')
     }
   },
   actions: {
@@ -25,6 +31,9 @@ export default new Vuex.Store({
     },
     session(context){
       context.commit("load_session")
+    },
+    logout(context){
+      context.commit('finish_session')
     }
   },
   getters: {

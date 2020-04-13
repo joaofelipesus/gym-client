@@ -27,7 +27,7 @@
 
         <div class="navbar-end">
           <div class="navbar-item">
-            <a class="button is-light">
+            <a @click.prevent="logout" class="button is-light">
               Sair
             </a>
           </div>
@@ -42,3 +42,17 @@
     margin-right: 6px;
   }
 </style>
+
+<script>
+import store from '../../store/user_store'
+import router from '../../router/index'
+
+export default {
+  methods: {
+    logout(){
+      store.dispatch('logout')
+      router.push("/")
+    }
+  }
+}
+</script>

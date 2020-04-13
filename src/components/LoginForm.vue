@@ -6,8 +6,6 @@
       <div class="panel-block">
         <form @submit.prevent="send_login">
           <div v-show="has_error">
-            {{ has_error }}
-            {{ error }}
             <p id="error-message" class="has-text-danger has-text-centered">
               {{ error }}
             </p>
@@ -45,6 +43,8 @@
 
 <script>
 import UserService from '../services/UserServices'
+import store from '../store/user_store'
+import router from '../router/index'
 export default {
   data(){
     return {
@@ -57,8 +57,15 @@ export default {
     send_login(){
       let user = { email: this.email, password: this.password }
       UserService.login(user).then(response => {
-        console.log(response);
-        alert('MALAKOI !')
+        const data = response.data
+        const token = data.authentication_token
+        const user = {
+          id: data.id,
+          email: data.email,
+          kind: data.kind
+        }
+        store.dispatch("authenticate", user, token)
+        router.push('/home/admin')
       }).catch(error => {        
         this.error = error.response.data.error
       })

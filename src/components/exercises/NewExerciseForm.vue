@@ -31,6 +31,8 @@
 <script>
 import ErrorMessage from '../shared/ErrorMessage'
 import ExerciseService from '../../services/ExerciseService'
+import store from '../../store/notifications_store'
+import router from '../../router/index'
 export default {
   data(){
     return {
@@ -40,9 +42,9 @@ export default {
   },
   methods: {
     send_form(){
-      ExerciseService.new({name: this.name}).then(response => {
-        console.log(response);
-        
+      ExerciseService.new({name: this.name}).then(() => {
+        store.dispatch('add_message', 'Exercício criado com sucesso.')
+        router.push('/home/admin')
       }).catch(error => {
         this.errors = error.response.data.errors[0]
       })

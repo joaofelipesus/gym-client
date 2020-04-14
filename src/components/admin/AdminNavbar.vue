@@ -50,6 +50,7 @@
         </div>
       </div>
     </nav>
+    <SuccessMessage />
   </div>
 </template>
 
@@ -63,6 +64,7 @@
 <script>
 import store from '../../store/user_store'
 import router from '../../router/index'
+import SuccessMessage from '../shared/SuccessMessage';
 
 export default {
   methods: {
@@ -70,6 +72,9 @@ export default {
       store.dispatch('logout')
       router.push("/")
     }
+  },
+  components: {
+    SuccessMessage
   }
 }
 </script>

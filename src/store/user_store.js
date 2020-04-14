@@ -6,22 +6,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null,
-    authentication_token: ""
   },
   mutations: {
-    new_session(state, user, token){
-      state.authentication_token = token
+    new_session(state, user){
       state.user = JSON.stringify(user)
-      localStorage.setItem('authentication_token', token)
       localStorage.setItem('user', JSON.stringify(user))
     },
     load_session(state){
       state.user = JSON.parse(localStorage.getItem("user"));
     },
     finish_session(state){
-      state.authentication_token = ''
       state.user = ''
-      localStorage.removeItem('authentication_token')
       localStorage.removeItem('user')
     }
   },
@@ -43,6 +38,15 @@ export default new Vuex.Store({
     },
     user(state){
       return state.user
+    },
+    headers(state){
+      return { 
+        'X-User-Email': state.user.email, 
+        'X-User-Token': state.user.authentication_token, 
+        'Content-Type': 'application/json', 
+        'Accept': 'application/json' 
+      }
     }
+
   }
 })

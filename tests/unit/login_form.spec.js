@@ -20,7 +20,7 @@ describe('Error message', () => {
   it('should render error message only when error attribute has a value', async () => {
     const wrapper = mount(LoginForm)
     expect(wrapper.text()).to.not.match(/Some error/)
-    wrapper.setData({error: 'Some error'})
+    wrapper.setData({errors: 'Some error'})
     await wrapper.vm.$nextTick()
     expect(wrapper.text()).to.match(/Some error/)    
   })

@@ -1,4 +1,5 @@
 <template>
+  <div>
     <nav id="admin-navbar" class="navbar is-success" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <router-link to="/home/admin" class="navbar-item">
@@ -19,6 +20,21 @@
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
 
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Exercícios
+            </a>
+
+            <div class="navbar-dropdown">
+              <router-link to="/admin/exercises/new" class="navbar-item">
+                Novo
+              </router-link>
+              <a class="navbar-item">
+                Exercícios
+              </a>
+            </div>
+          </div>      
+
           <a class="navbar-item">
             Documentation
           </a>
@@ -34,6 +50,7 @@
         </div>
       </div>
     </nav>
+  </div>
 </template>
 
 <style lang="scss">

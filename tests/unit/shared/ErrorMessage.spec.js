@@ -1,5 +1,4 @@
 import { expect } from 'chai'
-//import LoginForm from '@/components/LoginForm.vue'
 import { mount } from '@vue/test-utils'
 import ErrorMessage from '@/components/shared/ErrorMessage'
 

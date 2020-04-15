@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import HomeAdmin from '../views/HomeAdmin'
 import store from '../store/user_store'
 import NewExercise from '../views/exercises/NewExercise'
+import Exercises from '@/views/exercises/Exercises'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ Vue.use(VueRouter)
     path: '/admin/exercises/new',
     name: 'NewExercise',
     component: NewExercise
+  },
+  {
+    path: '/admin/exercises',
+    name: 'Exercises',
+    component: Exercises
   }
 ]
 

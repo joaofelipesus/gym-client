@@ -29,9 +29,9 @@
               <router-link to="/admin/exercises/new" id="new-exercise" class="navbar-item">
                 Novo
               </router-link>
-              <a class="navbar-item">
+              <router-link to='/admin/exercises' id="exercises" class="navbar-item">
                 Exercícios
-              </a>
+              </router-link>
             </div>
           </div>      
 

@@ -12,6 +12,13 @@
             <td v-html="status(exercise)"></td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <button v-for="index in page_indexes" v-bind:key="index" @click.prevent="change_page(index)" :class="{ 'is-active' : current_page == index}">
+              {{ index }}
+            </button>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>
@@ -32,6 +39,11 @@
   td, th {
     @extend .has-text-centered;
   }
+  button{
+    @extend .button, .is-dark, .is-small, .is-outlined;
+    margin-top: 2%;
+    margin-left: 2%;
+  }
 </style>
 
 <script>
@@ -39,12 +51,15 @@ import ExercisesService from "../../services/ExerciseService"
 export default {
   data(){
     return {
-      exercises: []
+      exercises: [],
+      page_indexes: [],
+      current_page: 1
     }
   },
   created(){
-    ExercisesService.fetch().then(response => {
+    ExercisesService.fetch(1).then(response => {
       this.exercises = response.data.exercises
+      this.page_indexes = [...Array(response.data.total_pages).keys()].map((index) => index + 1)      
     }).catch(error => {
       console.log(error);
     })
@@ -55,6 +70,14 @@ export default {
         return "<span class='has-text-success'>Ativo</span>"
       else
         return "<span class='has-text-danger>Inativo</span>"
+    },
+    change_page(new_page){
+      this.current_page = new_page
+      ExercisesService.fetch(new_page).then(response => { 
+        this.exercises = response.data.exercises
+      }).catch(error => {
+        console.log(error);
+      })
     }
   }
 }

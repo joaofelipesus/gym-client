@@ -8,8 +8,8 @@ export default {
     return response 
   },
 
-  async fetch(){
-    let response = await axios.get('/exercises', {headers: store.getters['headers']})
+  async fetch(page){
+    let response = await axios.get(`/exercises?page=${page}`, {headers: store.getters['headers']})
     return response
   }
 

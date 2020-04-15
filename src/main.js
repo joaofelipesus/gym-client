@@ -7,6 +7,9 @@ import Bulma from 'bulma'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
+
+axios.defaults.baseURL = 'http://10.0.1.63:3000/';
 
 library.add(fas)
 Vue.component('font-awesome-icon', FontAwesomeIcon)

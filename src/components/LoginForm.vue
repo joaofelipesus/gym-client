@@ -5,11 +5,7 @@
       <p class="has-text-centered panel-heading">Bem vindo</p>
       <div class="panel-block">
         <form @submit.prevent="send_login">
-          <div v-show="has_error">
-            <p id="error-message" class="has-text-danger has-text-centered">
-              {{ error }}
-            </p>
-          </div>
+          <ErrorMessage v-bind:errors="errors" />
           <div class="field">
             <label class="label">Email</label>
             <input v-model="email" id="email" class="input" type="email" required autofocus>
@@ -42,6 +38,7 @@
 </style>
 
 <script>
+import ErrorMessage from './shared/ErrorMessage'
 import UserService from '../services/UserServices'
 import store from '../store/user_store'
 import router from '../router/index'
@@ -50,32 +47,23 @@ export default {
     return {
       email: '',
       password: '',
-      error: ''
+      errors: ''
     }
   },
   methods: {
     send_login(){
       let user = { email: this.email, password: this.password }
       UserService.login(user).then(response => {
-        const data = response.data
-        const token = data.authentication_token
-        const user = {
-          id: data.id,
-          email: data.email,
-          kind: data.kind
-        }
-        store.dispatch("authenticate", user, token)
+        store.dispatch("authenticate", response.data)
         router.push('/home/admin')
       }).catch(error => {        
-        this.error = error.response.data.error
+        this.errors = error.response.data.error
       })
-    }
+    },
   },
-  computed: {
-    has_error(){
-      if (this.error.length > 0) return true
-      return false
-    }
+  components: {
+    ErrorMessage
   }
+  
 }
 </script>

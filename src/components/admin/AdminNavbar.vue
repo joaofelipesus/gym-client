@@ -1,4 +1,5 @@
 <template>
+  <div>
     <nav id="admin-navbar" class="navbar is-success" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <router-link to="/home/admin" class="navbar-item">
@@ -16,8 +17,23 @@
         </a>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
+      <div id="navbarBasicExample" class="navbar-menu is-active">
         <div class="navbar-start">
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a id="exercises-dropdown" class="navbar-link">
+              Exercícios
+            </a>
+
+            <div class="navbar-dropdown">
+              <router-link to="/admin/exercises/new" id="new-exercise" class="navbar-item">
+                Novo
+              </router-link>
+              <a class="navbar-item">
+                Exercícios
+              </a>
+            </div>
+          </div>      
 
           <a class="navbar-item">
             Documentation
@@ -34,6 +50,8 @@
         </div>
       </div>
     </nav>
+    <SuccessMessage />
+  </div>
 </template>
 
 <style lang="scss">
@@ -46,6 +64,7 @@
 <script>
 import store from '../../store/user_store'
 import router from '../../router/index'
+import SuccessMessage from '../shared/SuccessMessage';
 
 export default {
   methods: {
@@ -53,6 +72,9 @@ export default {
       store.dispatch('logout')
       router.push("/")
     }
+  },
+  components: {
+    SuccessMessage
   }
 }
 </script>

@@ -1,15 +1,15 @@
 <template>
   <div class="columns">
     <div class="column is-half is-offset-one-quarter">
-      <table class="table is-fullwidth">
-        <thead class="has-background-dark">
-          <th class="has-text-centered has-text-white">Nome</th>
-          <th class="has-text-centered has-text-white">Status</th>
+      <table>
+        <thead>
+          <th>Nome</th>
+          <th>Status</th>
         </thead>
         <tbody>
           <tr v-for="exercise in exercises" v-bind:key="exercise.id">
-            <td class="has-text-centered"> {{ exercise.name }} </td>
-            <td class="has-text-centered" v-html="status(exercise)"></td>
+            <td> {{ exercise.name }} </td>
+            <td v-html="status(exercise)"></td>
           </tr>
         </tbody>
       </table>
@@ -18,8 +18,19 @@
 </template>
 
 <style lang="scss" scoped>
+@import 'bulma';
   table{
     margin-top: 2.5%;
+    @extend .table, .is-fullwidth;
+  }
+  thead{
+    @extend .has-background-dark;
+  }
+  th{
+    @extend .has-text-white;
+  }
+  td, th {
+    @extend .has-text-centered;
   }
 </style>
 

@@ -7,14 +7,14 @@
           <th>Status</th>
         </thead>
         <tbody>
-          <tr v-for="exercise in exercises" v-bind:key="exercise.id">
+          <tr v-for="exercise in exercises" v-bind:key="exercise.id" class="exercise">
             <td> {{ exercise.name }} </td>
             <td v-html="status(exercise)"></td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
-            <button v-for="index in page_indexes" v-bind:key="index" @click.prevent="change_page(index)" :class="{ 'is-active' : current_page == index}">
+            <button v-for="index in page_indexes" v-bind:key="index" @click.prevent="change_page(index)" :class="{ 'is-active' : current_page == index}" class="index-button">
               {{ index }}
             </button>
           </tr>

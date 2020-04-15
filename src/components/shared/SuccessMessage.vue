@@ -1,5 +1,5 @@
 <template>
-  <div v-if="has_message" class="notification is-info is-light">
+  <div id="success-message" v-if="has_message" class="notification is-info is-light">
     <button @click="remove_message" class="delete"></button>
     <p id="success-message" class="">
       {{ message }}

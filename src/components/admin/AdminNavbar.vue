@@ -17,16 +17,16 @@
         </a>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
+      <div id="navbarBasicExample" class="navbar-menu is-active">
         <div class="navbar-start">
 
           <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
+            <a id="exercises-dropdown" class="navbar-link">
               Exercícios
             </a>
 
             <div class="navbar-dropdown">
-              <router-link to="/admin/exercises/new" class="navbar-item">
+              <router-link to="/admin/exercises/new" id="new-exercise" class="navbar-item">
                 Novo
               </router-link>
               <a class="navbar-item">

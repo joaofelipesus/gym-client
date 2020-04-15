@@ -9,9 +9,9 @@
           <ErrorMessage v-bind:errors="errors"/>
           <div class="field">
             <label class="label">Nome</label>
-            <input class="input" v-model="name" required autofocus/>
+            <input id="name" class="input" v-model="name" required autofocus/>
           </div>
-          <button class="button is-info">
+          <button id="btn-save" class="button is-info">
             Salvar
           </button>
         </form>

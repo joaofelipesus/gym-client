@@ -9,7 +9,7 @@
         <tbody>
           <tr v-for="exercise in exercises" v-bind:key="exercise.id">
             <td class="has-text-centered"> {{ exercise.name }} </td>
-            <td class="has-text-centered"> {{ exercise.status }} </td>
+            <td class="has-text-centered" v-html="status(exercise)"></td>
           </tr>
         </tbody>
       </table>
@@ -38,5 +38,13 @@ export default {
       console.log(error);
     })
   },
+  methods: {
+    status(exercise){
+      if (exercise.status == "active")
+        return "<span class='has-text-success'>Ativo</span>"
+      else
+        return "<span class='has-text-danger>Inativo</span>"
+    }
+  }
 }
 </script>

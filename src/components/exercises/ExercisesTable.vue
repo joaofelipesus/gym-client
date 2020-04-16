@@ -11,9 +11,7 @@
           <tr v-for="exercise in exercises" v-bind:key="exercise.id" class="exercise">
             <td> {{ exercise.name }} </td>
             <td v-html="status(exercise)"></td>
-            <td>
-              <a class="button is-danger is-outlined is-small" @click.prevent="disable(exercise.id)">Desabilitar</a>
-            </td>
+            <td v-html="render_status_button(exercise)"></td>
           </tr>
         </tbody>
         <tfoot>
@@ -92,6 +90,12 @@ export default {
       }).catch(error => {
         console.log(error);
       })
+    },
+    render_status_button(exercise){
+      if (exercise.status == "active")
+        return '<a class="button is-danger is-outlined is-small" @click.prevent="disable(exercise.id)">Desabilitar</a>'
+      else
+        return '<a class="button is-info is-outlined is-small" @click.prevent="enable(exercise.id)">Habilitar</a>'
     }
   }
 }

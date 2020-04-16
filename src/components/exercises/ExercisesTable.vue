@@ -5,11 +5,15 @@
         <thead>
           <th>Nome</th>
           <th>Status</th>
+          <th></th>
         </thead>
         <tbody>
           <tr v-for="exercise in exercises" v-bind:key="exercise.id" class="exercise">
             <td> {{ exercise.name }} </td>
             <td v-html="status(exercise)"></td>
+            <td>
+              <a class="button is-danger is-outlined is-small" @click.prevent="disable(exercise.id)">Desabilitar</a>
+            </td>
           </tr>
         </tbody>
         <tfoot>
@@ -22,6 +26,7 @@
       </table>
     </div>
   </div>
+
 </template>
 
 <style lang="scss" scoped>
@@ -75,6 +80,15 @@ export default {
       this.current_page = new_page
       ExercisesService.fetch(new_page).then(response => { 
         this.exercises = response.data.exercises
+      }).catch(error => {
+        console.log(error);
+      })
+    },
+    disable(exercise_id){      
+      ExercisesService.update({id: exercise_id, status: "inactive"}).then(() => {
+        ExercisesService.fetch(this.current_page).then(response => {
+          this.exercises = response.data.exercises
+        })
       }).catch(error => {
         console.log(error);
       })

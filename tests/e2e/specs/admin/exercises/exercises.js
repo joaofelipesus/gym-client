@@ -1,5 +1,4 @@
 var Login  = require('../../../support/login')
-var faker = require('faker')
 
 module.exports = {
 

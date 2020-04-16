@@ -11,6 +11,11 @@ export default {
   async fetch(page){
     let response = await axios.get(`/exercises?page=${page}`, {headers: store.getters['headers']})
     return response
+  },
+
+  async update(exercise){
+    let response = await axios.patch(`/exercises/${exercise.id}`, { exercise: exercise }, {headers: store.getters['headers']})
+    return response
   }
 
 }

@@ -9,7 +9,8 @@ module.exports = {
   beforeEach : function (browser){
     Login.as_admin(browser)
           .click('#exercises-dropdown')
-          .click('#new-exercise')    
+          .click('#new-exercise')
+          .waitForElementVisible('#new-exercise-view')
   },
   'navigate to new exercise view': browser => {
     browser
@@ -36,6 +37,7 @@ module.exports = {
       .waitForElementVisible('#new-exercise-view')
       .setValue('#name', name)
       .click('#btn-save')
+      .waitForElementVisible('#error-message')
       .assert.containsText('#error-message', "Nome já está em uso")
       .end()  
   }

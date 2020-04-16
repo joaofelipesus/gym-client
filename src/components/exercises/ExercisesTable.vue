@@ -1,5 +1,5 @@
 <template>
-  <div class="columns">
+  <div id="exercises-list" class="columns">
     <div class="column is-half is-offset-one-quarter">
       <table>
         <thead>
@@ -12,8 +12,8 @@
             <td> {{ exercise.name }} </td>
             <td v-html="status(exercise)"></td>
             <td>
-              <a v-if="exercise.status == 'active'" class="button is-danger is-outlined is-small" @click.prevent="disable(exercise.id)">Desabilitar</a>
-              <a v-if="exercise.status == 'inactive'" class="button is-info is-outlined is-small" @click.prevent="enable(exercise.id)">Habilitar</a>
+              <a v-if="exercise.status == 'active'" class="disable" @click.prevent="disable(exercise.id)">Desabilitar</a>
+              <a v-if="exercise.status == 'inactive'" class="enable" @click.prevent="enable(exercise.id)">Habilitar</a>
             </td>
           </tr>
         </tbody>
@@ -49,6 +49,12 @@
     @extend .button, .is-dark, .is-small, .is-outlined;
     margin-top: 2%;
     margin-left: 2%;
+  }
+  .disable{
+    @extend .button, .is-danger, .is-outlined, .is-small; 
+  }
+  .enable{
+    @extend .button, .is-info, .is-outlined, .is-small;
   }
 </style>
 

@@ -11,7 +11,10 @@
           <tr v-for="exercise in exercises" v-bind:key="exercise.id" class="exercise">
             <td> {{ exercise.name }} </td>
             <td v-html="status(exercise)"></td>
-            <td v-html="render_status_button(exercise)"></td>
+            <td>
+              <a v-if="exercise.status == 'active'" class="button is-danger is-outlined is-small" @click.prevent="disable(exercise.id)">Desabilitar</a>
+              <a v-if="exercise.status == 'inactive'" class="button is-info is-outlined is-small" @click.prevent="enable(exercise.id)">Habilitar</a>
+            </td>
           </tr>
         </tbody>
         <tfoot>
@@ -72,7 +75,7 @@ export default {
       if (exercise.status == "active")
         return "<span class='has-text-success'>Ativo</span>"
       else
-        return "<span class='has-text-danger>Inativo</span>"
+        return "<span class='has-text-danger'>Inativo</span>"
     },
     change_page(new_page){
       this.current_page = new_page
@@ -91,11 +94,14 @@ export default {
         console.log(error);
       })
     },
-    render_status_button(exercise){
-      if (exercise.status == "active")
-        return '<a class="button is-danger is-outlined is-small" @click.prevent="disable(exercise.id)">Desabilitar</a>'
-      else
-        return '<a class="button is-info is-outlined is-small" @click.prevent="enable(exercise.id)">Habilitar</a>'
+    enable(exercise_id){      
+      ExercisesService.update({id: exercise_id, status: 'active'}).then(() => {
+        ExercisesService.fetch(this.current_page).then(response => {
+          this.exercises = response.data.exercises
+        })
+      }).catch(error => {
+        console.log(error);
+      })
     }
   }
 }

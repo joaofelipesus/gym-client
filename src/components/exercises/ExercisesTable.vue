@@ -6,6 +6,7 @@
           <th>Nome</th>
           <th>Status</th>
           <th></th>
+          <th></th>
         </thead>
         <tbody>
           <tr v-for="exercise in exercises" v-bind:key="exercise.id" class="exercise">
@@ -14,6 +15,11 @@
             <td>
               <a v-if="exercise.status == 'active'" class="disable" @click.prevent="disable(exercise.id)">Desabilitar</a>
               <a v-if="exercise.status == 'inactive'" class="enable" @click.prevent="enable(exercise.id)">Habilitar</a>
+            </td>
+            <td>
+              <router-link :to="{ path: '/admin/exercises/' + exercise.id + '/edit' }">
+                Editar
+              </router-link>
             </td>
           </tr>
         </tbody>

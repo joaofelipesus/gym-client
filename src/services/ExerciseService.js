@@ -16,6 +16,11 @@ export default {
   async update(exercise){
     let response = await axios.patch(`/exercises/${exercise.id}`, { exercise: exercise }, {headers: store.getters['headers']})
     return response
+  },
+
+  async show(exercise_id){
+    let response = await axios.get(`/exercises/${exercise_id}`, { headers: store.getters['headers'] })
+    return response
   }
 
 }

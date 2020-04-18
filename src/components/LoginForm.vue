@@ -55,8 +55,11 @@ export default {
       let user = { email: this.email, password: this.password }
       UserService.login(user).then(response => {
         store.dispatch("authenticate", response.data)
-        router.push('/home/admin')
-      }).catch(error => {        
+        if(response.data.kind == 'user')
+          router.push('/home/user')
+        else if(response.data.kind == 'admin')
+          router.push('/home/admin')
+      }).catch(error => {
         this.errors = error.response.data.error
       })
     },

@@ -1,5 +1,5 @@
 <template>
-  <div id="new-exercise-view" class="columns">
+  <div id="edit-exercise-form" class="columns">
     <div class="panel column is-half-desktop is-offset-one-quarter-desktop is-info">
       <p class="has-text-centered panel-heading">
         Editar exercício

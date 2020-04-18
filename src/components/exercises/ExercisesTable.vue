@@ -17,7 +17,7 @@
               <a v-if="exercise.status == 'inactive'" class="enable" @click.prevent="enable(exercise.id)">Habilitar</a>
             </td>
             <td>
-              <router-link :to="{ path: '/admin/exercises/' + exercise.id + '/edit' }">
+              <router-link :to="{ path: '/admin/exercises/' + exercise.id + '/edit' }" class="edit-exercise">
                 Editar
               </router-link>
             </td>

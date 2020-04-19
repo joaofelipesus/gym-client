@@ -6,6 +6,7 @@ import store from '../store/user_store'
 import NewExercise from '../views/exercises/NewExercise'
 import Exercises from '@/views/exercises/Exercises'
 import EditExercise from '@/views/exercises/EditExercise'
+import HomeUser from '@/views/HomeUser'
 
 Vue.use(VueRouter)
 
@@ -23,7 +24,8 @@ Vue.use(VueRouter)
   { path: '/home/admin', component: HomeAdmin },
   { path: '/admin/exercises/new', component: NewExercise },
   { path: '/admin/exercises', component: Exercises },
-  { path: '/admin/exercises/:id/edit', component: EditExercise }
+  { path: '/admin/exercises/:id/edit', component: EditExercise },
+  { path: '/home/user', component: HomeUser }
 ]
 
 const router = new VueRouter({
@@ -38,6 +40,7 @@ router.beforeEach((to, from, next) => {
   store.dispatch("session");
   let session = store.getters['has_session'];
   const is_admin_url = to.path.includes('/admin')
+  const is_user_url = to.path.includes('/user')
 
   if(authRequired && !session) {
     return next({
@@ -45,6 +48,11 @@ router.beforeEach((to, from, next) => {
       query: { returnUrl: to.path }
     });
   }else if(is_admin_url && (store.getters['user'].kind != "admin")){
+    return next({
+      path: '/',
+      query: { returnUrl: to.path }
+    });
+  } else if(is_user_url && (store.getters['user'].kind != "user")) {
     return next({
       path: '/',
       query: { returnUrl: to.path }

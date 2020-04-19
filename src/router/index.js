@@ -40,6 +40,7 @@ router.beforeEach((to, from, next) => {
   store.dispatch("session");
   let session = store.getters['has_session'];
   const is_admin_url = to.path.includes('/admin')
+  const is_user_url = to.path.includes('/user')
 
   if(authRequired && !session) {
     return next({
@@ -47,6 +48,11 @@ router.beforeEach((to, from, next) => {
       query: { returnUrl: to.path }
     });
   }else if(is_admin_url && (store.getters['user'].kind != "admin")){
+    return next({
+      path: '/',
+      query: { returnUrl: to.path }
+    });
+  } else if(is_user_url && (store.getters['user'].kind != "user")) {
     return next({
       path: '/',
       query: { returnUrl: to.path }

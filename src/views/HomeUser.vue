@@ -8,7 +8,7 @@
 
 <script>
 import UserNavbar from '../components/navbars/UserNavbar'
-import TrainingRoutineModal from '../components/shared/TrainingRoutineModal'
+import TrainingRoutineModal from '../components/training_routine/TrainingRoutineModal'
 export default {
   components: {
     UserNavbar,

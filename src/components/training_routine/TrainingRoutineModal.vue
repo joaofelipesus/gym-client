@@ -10,7 +10,7 @@
         Notamos que não existe nenhuma rotina de treinamento em andamento, deseja criar uma agora ?
       </section>
       <footer class="modal-card-foot">
-        <button id="new-training-routine" class="button is-success">Criar nova rotina</button>
+        <button @click.prevent="create_training_routine" id="new-training-routine" class="button is-success">Criar nova rotina</button>
       </footer>
     </div>
   </div>
@@ -18,6 +18,7 @@
 
 <script>
 import TrainingRoutineService from '../../services/TrainingRoutineService'
+import store from '@/store/training_routine_store'
 export default {
   data(){
     return {
@@ -26,16 +27,26 @@ export default {
   },
   created(){
     TrainingRoutineService.progress().then(response => {
-      console.log(response)
+      store.dispatch('add_training_routine', response.data.training_routine)
     }).catch(error => {
       if(error.response.status == 404){
         this.new_training_routine_modal = 'is-active'
+      } else {
+        console.log(error);
       }
     })
   },
   methods: {
     close_new_training_routine_modal(){
       this.new_training_routine_modal = ''
+    },
+    create_training_routine(){
+      TrainingRoutineService.create().then(response => {
+        this.new_training_routine_modal = ''
+        store.dispatch('add_training_routine', response.data.training_routine)
+      }).catch(error => {
+        console.log(error);
+      })
     }
   }
 }

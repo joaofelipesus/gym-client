@@ -21,6 +21,15 @@ module.exports = {
   waitForConditionTimeout: 5000,
 
   'default': {
+    desiredCapabilities: {
+      browserName : "chrome",
+      chromeOptions: {
+         args: ["headless", "disable-gpu"],
+            mobileEmulation: {
+               deviceName: "Iphone SE"
+            }
+         },
+   }
     /*
     The globals defined here are available everywhere in any test env
     */

@@ -1,5 +1,5 @@
 <template>
-  <div class="modal" :class="new_training_routine_modal">
+  <div id="new-training-routine-modal" class="modal" :class="new_training_routine_modal">
     <div @click="close_new_training_routine_modal" class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
@@ -10,7 +10,7 @@
         Notamos que não existe nenhuma rotina de treinamento em andamento, deseja criar uma agora ?
       </section>
       <footer class="modal-card-foot">
-        <button class="button is-success">Criar nova rotina</button>
+        <button id="new-training-routine" class="button is-success">Criar nova rotina</button>
       </footer>
     </div>
   </div>

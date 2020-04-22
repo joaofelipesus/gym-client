@@ -70,9 +70,12 @@
                         <font-awesome-icon icon="angle-down" class="has-text-primary is-size-4" style="margin-left: 2%;" />
                       </p>
                     </header>
-                    <div class="card-content" :class="display_exercise_list[index]">
+                    <div style="overflow: auto;" class="card-content" :class="display_exercise_list[index]">
                       <p>Repetições: {{ workout_exercise.repetitions }}</p>
                       <p>Tempo de descanço: {{ workout_exercise.rest_time }}</p>
+                      <button @click.prevent="remove_workou_exercise(index)" class="button is-danger is-pulled-right is-small">
+                        Remover
+                      </button>
                     </div>
                   </div>
                 </div>  
@@ -173,6 +176,10 @@ export default {
         return true
       else
         return false
+    },
+    remove_workou_exercise(index){
+      this.workout_exercises.splice(index, 1)
+      this.display_exercise_list.splice(index, 1)
     }
   },
   computed: {

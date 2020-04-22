@@ -20,7 +20,7 @@
       <div class="panel is-info">
         <p class="panel-heading">Novo treino</p>
         <div class="panel-block">
-          <form @submit.prevent="render_exercises_form">
+          <form @submit.prevent="save_workout">
             <div class="field">
               <label class="label">Nome</label>
               <input v-model="name" class="input" placeholder="Braço, Perna, A, B, C" required/>
@@ -100,6 +100,7 @@
 <script>
 import store from '../../store/training_routine_store'
 import ExerciseService from '../../services/ExerciseService'
+import WorkoutService from '../../services/WorkoutService'
 export default {
   data(){    
     return {
@@ -180,6 +181,28 @@ export default {
     remove_workou_exercise(index){
       this.workout_exercises.splice(index, 1)
       this.display_exercise_list.splice(index, 1)
+    },
+    save_workout(){
+      let workout_exercises_attributes = this.workout_exercises.map(workout_exercise => {
+        return {
+          exercise_id: workout_exercise.exercise.id,
+          repetitions: workout_exercise.repetitions,
+          rest_time: workout_exercise.rest_time
+        }
+      })
+      let workout = {
+        name: this.name,
+        classes_to_attend: this.classes_to_attend,
+        workout_exercises_attributes: workout_exercises_attributes,
+        training_routine_id: JSON.parse(store.getters['training_routine']).id
+      }
+      WorkoutService.create(workout).then(response => {
+        this.name = ''
+        this.classes_to_attend = ''
+        this.workout_exercises = []
+      }).catch(error => {
+        console.log(error);
+      })
     }
   },
   computed: {

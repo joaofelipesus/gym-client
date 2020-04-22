@@ -31,32 +31,50 @@
             </div>
             <div class="field">
               <div class="card">
-                <header class="card-header">
-                  <p class="card-header-title">Adicionar exercícios</p>
+                <header class="card-header has-background-primary">
+                  <p class="card-header-title has-text-white">Adicionar exercícios</p>
                 </header>
                 <div class="card-content">
-                  <div class="field">
-                    <label class="label">Exercício</label>
-                    <select v-model="exercise_id" class="select">
-                      <option v-for="exercise in exercises" :key="exercise.id" value="exercise.id">
-                        {{ exercise.name }}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label class="label">Repetições</label>
-                    <input class="input" type="number" required/>
-                  </div>
-                  <div class="field">
-                    <label class="label">Tempo de descanço</label>
-                    <input class="input" type="number" placeholder="Tempo em segundos" required/>
-                  </div>
-                  <button class="button is-primary">
-                    Adicionar
-                  </button>
+                  <form @submit.prevent="add_exercise">
+                    <div class="field">
+                      <label class="label">Exercício</label>
+                      <div class="select">
+                        <select v-model="exercise_id">
+                          <option v-for="exercise in exercises" :key="exercise.id" v-bind:value="exercise.id">
+                            {{ exercise.name }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">Repetições</label>
+                      <input v-model="repetitions" class="input" type="number" required/>
+                    </div>
+                    <div class="field">
+                      <label class="label">Tempo de descanço</label>
+                      <input v-model="rest_time" class="input" type="number" placeholder="Tempo em segundos" required/>
+                    </div>
+                    <button class="button is-primary">
+                      Adicionar
+                    </button>
+                  </form>
                 </div>
+                <div v-show="render_exercise_list" class="card-content">
+                  <div v-for="(workout_exercise, index) in workout_exercises" :key="workout_exercise.exercise.id" class="card">
+                    <header @click.prevent="expand_workout_exercise_card(index)" class="card-header">
+                      <p class="card-header-title">
+                        {{ workout_exercise.exercise.name }}
+                        <font-awesome-icon icon="angle-down" class="has-text-primary is-size-4" style="margin-left: 2%;" />
+                      </p>
+                    </header>
+                    <div class="card-content" :class="display_exercise_list[index]">
+                      <p>Repetições: {{ workout_exercise.repetitions }}</p>
+                      <p>Tempo de descanço: {{ workout_exercise.rest_time }}</p>
+                    </div>
+                  </div>
+                </div>  
               </div>
-            </div>     
+            </div>
             <button class="button is-info">
               Concluir
             </button>
@@ -69,7 +87,7 @@
 
 <style lang="scss" scoped>
   #workout-div{
-    margin-top: 8%;
+    margin-top: 2%;
   }
 </style>
 
@@ -77,12 +95,16 @@
 import store from '../../store/training_routine_store'
 import ExerciseService from '../../services/ExerciseService'
 export default {
-  data(){
+  data(){    
     return {
       display_modal: 'is-hidden',
       display_workout_form: '',
       name: '',
       classes_to_attend: '',
+      rest_time: '',
+      repetitions: '',
+      workout_exercises: [],
+      display_exercise_list: [],
       exercises: [],
       exercise_id: ''
     }
@@ -95,6 +117,7 @@ export default {
           name: exercise.name
         }
       })
+      this.exercise_id = this.exercises[0].id
     }).catch(error => {
       console.log(error);
     })
@@ -114,6 +137,32 @@ export default {
     render_form(){
       this.display_modal = ''
       this.display_workout_form = ''
+    },
+    add_exercise(){
+      let exercise = this.exercises.find(exercise => exercise.id == this.exercise_id)
+      let workout_exercise = {
+        exercise: exercise,
+        rest_time: this.rest_time,
+        repetitions: this.repetitions
+      }
+      this.workout_exercises.push(workout_exercise)
+      this.rest_time = ''
+      this.repetitions = ''
+      this.exercise_id = this.exercises[0].id
+      this.display_exercise_list.push('is-hidden')
+    },
+    expand_workout_exercise_card(index){
+      if(this.display_exercise_list[index] == ''){
+        this.$set(this.display_exercise_list, index, 'is-hidden');
+      }else{
+        this.$set(this.display_exercise_list, index, '');
+      }
+    }
+  },
+  computed: {
+    render_exercise_list(){
+      if (this.workout_exercises.length > 0) return true
+      return false
     },
   }
 }

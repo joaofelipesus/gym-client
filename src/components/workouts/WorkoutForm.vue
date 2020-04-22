@@ -36,6 +36,9 @@
                 </header>
                 <div class="card-content">
                   <form @submit.prevent="add_exercise">
+                    <span class="has-text-danger">
+                      {{ exercise_error_message }}
+                    </span>
                     <div class="field">
                       <label class="label">Exercício</label>
                       <div class="select">
@@ -106,7 +109,8 @@ export default {
       workout_exercises: [],
       display_exercise_list: [],
       exercises: [],
-      exercise_id: ''
+      exercise_id: '',
+      exercise_error_message: ''
     }
   },
   created (){
@@ -139,17 +143,22 @@ export default {
       this.display_workout_form = ''
     },
     add_exercise(){
-      let exercise = this.exercises.find(exercise => exercise.id == this.exercise_id)
-      let workout_exercise = {
-        exercise: exercise,
-        rest_time: this.rest_time,
-        repetitions: this.repetitions
-      }
-      this.workout_exercises.push(workout_exercise)
-      this.rest_time = ''
-      this.repetitions = ''
-      this.exercise_id = this.exercises[0].id
-      this.display_exercise_list.push('is-hidden')
+      if (this._already_have_workout_exercise()){
+        this.exercise_error_message = 'O exercício selecionado já está presente neste treino.'
+      } else {
+        this.exercise_error_message = ''
+        let exercise = this.exercises.find(exercise => exercise.id == this.exercise_id)
+        let workout_exercise = {
+          exercise: exercise,
+          rest_time: this.rest_time,
+          repetitions: this.repetitions
+        }
+        this.workout_exercises.push(workout_exercise)
+        this.rest_time = ''
+        this.repetitions = ''
+        this.exercise_id = this.exercises[0].id
+        this.display_exercise_list.push('is-hidden')
+      }      
     },
     expand_workout_exercise_card(index){
       if(this.display_exercise_list[index] == ''){
@@ -157,6 +166,13 @@ export default {
       }else{
         this.$set(this.display_exercise_list, index, '');
       }
+    },
+    _already_have_workout_exercise(){
+      let curren_exercise_id = this.workout_exercises.find(workout_exercise => workout_exercise.exercise.id == this.exercise_id)
+      if(curren_exercise_id)
+        return true
+      else
+        return false
     }
   },
   computed: {

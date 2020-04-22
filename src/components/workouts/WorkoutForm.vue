@@ -82,6 +82,7 @@
 </style>
 
 <script>
+import training_routine_store from '../../store/training_routine_store'
 import store from '../../store/workout_store'
 import ExerciseService from '../../services/ExerciseService'
 import WorkoutService from '../../services/WorkoutService'
@@ -115,6 +116,8 @@ export default {
     store.subscribe((mutation) => {
       if (mutation.type == 'display_workout_form'){
         this.display_workout_form = store.getters['workout_form_status']
+      } else if( mutation.type == 'set_workout') {
+        this.display_workout_form = 'is-hidden'
       }
     })
   },
@@ -165,11 +168,11 @@ export default {
         name: this.name,
         classes_to_attend: this.classes_to_attend,
         workout_exercises_attributes: workout_exercises_attributes,
-        training_routine_id: JSON.parse(store.getters['training_routine']).id
+        training_routine_id: JSON.parse(training_routine_store.getters['training_routine']).id
       }
       WorkoutService.create(workout).then(response => {
         this._clean_workout_fields()
-        console.log(response);
+        store.dispatch('add_workout', response.data)
       }).catch(error => {
         console.log(error);
       })

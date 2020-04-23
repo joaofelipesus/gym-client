@@ -1,16 +1,18 @@
 <template>
-  <div class="modal" :class="display_modal">
-    <div @click.prevent="close_modal" class="modal-background"></div>
+  <div id="without-workout-modal" class="modal" :class="display_modal">
+    <div @click.prevent="close_modal" id="without-workout-modal-background" class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title">Bem vindo !</p>
-        <button @click.prevent="close_modal" class="delete" aria-label="close"></button>
+        <button @click.prevent="close_modal" id="close-without-workout-modal" class="delete" aria-label="close"></button>
       </header>
       <section class="modal-card-body">
         <p>Notamos que não existe nenhum treino realcionado a sua rotina de treinos atual, para criar um ou mais trinos clique no botão abaixo.</p>
       </section>
       <footer class="modal-card-foot">
-        <button @click.prevent="render_form" class="button is-success">Criar novo treino</button>
+        <button @click.prevent="render_form" id="new-workout-button" class="button is-success">
+          Criar novo treino
+        </button>
       </footer>
     </div>
   </div>

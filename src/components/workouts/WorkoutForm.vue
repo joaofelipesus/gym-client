@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="new-workout-form">
     <div id="workout-div" :class="display_workout_form">
       <div class="panel is-info">
         <p class="panel-heading">Novo treino</p>

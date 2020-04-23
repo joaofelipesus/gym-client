@@ -1,5 +1,5 @@
 <template>
-  <div class="modal" :class="display_modal">
+  <div id="new-workout-modal" class="modal" :class="display_modal">
     <div @click.prevent="close_modal" class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">

@@ -5,7 +5,7 @@ module.exports = {
 
   beforeEach : function (browser){
     Login.as_admin(browser)
-      .resizeWindow(1200, 1024)      
+      .resizeWindow(1200, 1024)
       .click('#exercises-dropdown')
       .click('#new-exercise')
       .waitForElementVisible('#new-exercise-view')

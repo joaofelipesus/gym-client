@@ -3,14 +3,13 @@ var faker = require('faker')
 
 module.exports = {
 
-  before : function (browser) {
-    browser.resizeWindow(1200, 1024);
-  },
   beforeEach : function (browser){
     Login.as_admin(browser)
-          .click('#exercises-dropdown')
-          .click('#new-exercise')
-          .waitForElementVisible('#new-exercise-view')
+      .resizeWindow(1200, 1024)      
+      .click('#exercises-dropdown')
+      .click('#new-exercise')
+      .waitForElementVisible('#new-exercise-view')
+      .waitForElementVisible('#name')
   },
   'navigate to new exercise view': browser => {
     browser
@@ -27,11 +26,12 @@ module.exports = {
       .end()
   },
   'when duplucated names' : browser => {
-    let name = faker.internet.ipv6()
+    let name = 'Azuka Langley'
     browser
       .setValue('#name', name)
       .click('#btn-save')
       .waitForElementVisible('#admin-navbar')
+      .waitForElementVisible('#exercises-dropdown')
       .click('#exercises-dropdown')
       .click('#new-exercise')
       .waitForElementVisible('#new-exercise-view')

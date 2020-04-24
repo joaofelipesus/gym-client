@@ -1,9 +1,9 @@
 # setup e2e seeds
-cd /home/joaofelipe/Documents/gym-app/gym_api
+cd /home/joao/Documents/gym-app/gym_api
 docker-compose exec app bundle exec rails e2e:setup
 
 # running e2e tests
-cd /home/joaofelipe/Documents/gym-app/gym_client
+cd /home/joao/Documents/gym-app/gym-client
 
 if [ -z "$1" ] # check if wasnt passed any argument
   then
@@ -13,5 +13,5 @@ else
 fi
 
 # cleaning development database
-cd /home/joaofelipe/Documents/gym-app/gym_api
+cd /home/joao/Documents/gym-app/gym_api
 docker-compose exec app bundle exec rails e2e:clean

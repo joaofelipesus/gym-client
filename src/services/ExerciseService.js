@@ -21,6 +21,11 @@ export default {
   async show(exercise_id){
     let response = await axios.get(`/exercises/${exercise_id}`, { headers: store.getters['headers'] })
     return response
-  }
+  },
+
+  async fetch_active(){
+    let response = await axios.get('/exercises?active=true', { headers: store.getters['headers'] })
+    return response
+  },
 
 }

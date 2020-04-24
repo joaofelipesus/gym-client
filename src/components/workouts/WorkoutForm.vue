@@ -5,13 +5,14 @@
         <p class="panel-heading">Novo treino</p>
         <div class="panel-block">
           <form @submit.prevent="save_workout">
+            <span id="error-message" class="has-text-danger"> {{ error }} </span>
             <div class="field">
-              <label class="label">Nome</label>
-              <input v-model="name" class="input" placeholder="Braço, Perna, A, B, C" required/>
+              <label>Nome</label>
+              <input v-model="name" id="name" placeholder="Braço, Perna, A, B, C" required/>
             </div>
             <div class="field">
-              <label class="label">Número de aulas</label>
-              <input v-model="classes_to_attend" class="input" placeholder="20" type="number" required/>
+              <label>Número de aulas</label>
+              <input v-model="classes_to_attend" id="classes-to-attend" placeholder="20" type="number" required/>
             </div>
             <div class="field">
               <div class="card">
@@ -20,11 +21,11 @@
                 </header>
                 <div class="card-content">
                   <form @submit.prevent="add_exercise">
-                    <span class="has-text-danger">
+                    <span id="exercise-error-message" class="has-text-danger">
                       {{ exercise_error_message }}
                     </span>
                     <div class="field">
-                      <label class="label">Exercício</label>
+                      <label>Exercício</label>
                       <div class="select">
                         <select v-model="exercise_id">
                           <option v-for="exercise in exercises" :key="exercise.id" v-bind:value="exercise.id">
@@ -34,21 +35,21 @@
                       </div>
                     </div>
                     <div class="field">
-                      <label class="label">Repetições</label>
-                      <input v-model="repetitions" class="input" type="number" required/>
+                      <label>Repetições</label>
+                      <input v-model="repetitions" id="repetitions" type="number" required/>
                     </div>
                     <div class="field">
-                      <label class="label">Tempo de descanço</label>
-                      <input v-model="rest_time" class="input" type="number" placeholder="Tempo em segundos" required/>
+                      <label>Tempo de descanço</label>
+                      <input v-model="rest_time" type="number" id="rest-time" placeholder="Tempo em segundos" required/>
                     </div>
-                    <button class="button is-primary">
+                    <button id="btn-add-exercise" class="button is-primary">
                       Adicionar
                     </button>
                   </form>
                 </div>
                 <div v-show="render_exercise_list" class="card-content">
-                  <div v-for="(workout_exercise, index) in workout_exercises" :key="workout_exercise.exercise.id" class="card">
-                    <header @click.prevent="expand_workout_exercise_card(index)" class="card-header">
+                  <div v-for="(workout_exercise, index) in workout_exercises" :key="workout_exercise.exercise.id" class="card exercise-card">
+                    <header @click.prevent="expand_workout_exercise_card(index)" class="card-header exercise">
                       <p class="card-header-title">
                         {{ workout_exercise.exercise.name }}
                         <font-awesome-icon icon="angle-down" class="has-text-primary is-size-4" style="margin-left: 2%;" />
@@ -57,7 +58,7 @@
                     <div style="overflow: auto;" class="card-content" :class="display_exercise_list[index]">
                       <p>Repetições: {{ workout_exercise.repetitions }}</p>
                       <p>Tempo de descanço: {{ workout_exercise.rest_time }}</p>
-                      <button @click.prevent="remove_workou_exercise(index)" class="button is-danger is-pulled-right is-small">
+                      <button @click.prevent="remove_workou_exercise(index)" class="button is-danger is-pulled-right is-small remove-exercise">
                         Remover
                       </button>
                     </div>
@@ -65,7 +66,7 @@
                 </div>  
               </div>
             </div>
-            <button class="button is-info">
+            <button id="btn-save" class="button is-info">
               Concluir
             </button>
           </form>
@@ -76,8 +77,15 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "bulma";
   #workout-div{
     margin-top: 2%;
+  }
+  label{
+    @extend .label;
+  }
+  input{
+    @extend .input;
   }
 </style>
 
@@ -98,7 +106,8 @@ export default {
       display_exercise_list: [],
       exercises: [],
       exercise_id: '',
-      exercise_error_message: ''
+      exercise_error_message: '',
+      error: ''
     }
   },
   created (){
@@ -111,6 +120,7 @@ export default {
       })
       this.exercise_id = this.exercises[0].id
     }).catch(error => {
+      this.error = error.response.data.errors
       console.log(error);
     })
     store.subscribe((mutation) => {
@@ -173,8 +183,10 @@ export default {
       WorkoutService.create(workout).then(response => {
         this._clean_workout_fields()
         store.dispatch('add_workout', response.data)
+        this.error = ''
       }).catch(error => {
-        console.log(error);
+        window.scrollTo(0,0)
+        this.error = error.response.data.errors[0]
       })
     },
     _clean_exercise_fields(){

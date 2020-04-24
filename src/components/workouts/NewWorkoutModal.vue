@@ -10,7 +10,7 @@
         <p>Treino cadastrado com sucesso, deseja cadastrar um novo treino ?</p>
       </section>
       <footer class="modal-card-foot">
-        <button @click.prevent="render_form" class="button is-success">
+        <button id="btn-new-workout" @click.prevent="render_form" class="button is-success">
           Criar novo treino
         </button>
         <button @click.prevent="close_modal" class="button is-primary">

@@ -37,7 +37,6 @@ module.exports = {
       .waitForElementVisible('#admin-navbar')
       .click('#exercises-dropdown')
       .click('#exercises')
-      //.pause(10000)
       .waitForElementVisible('.edit-exercise')
       .click('.edit-exercise')
       .waitForElementVisible('#edit-exercise-form')

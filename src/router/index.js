@@ -7,6 +7,7 @@ import NewExercise from '../views/exercises/NewExercise'
 import Exercises from '@/views/exercises/Exercises'
 import EditExercise from '@/views/exercises/EditExercise'
 import HomeUser from '@/views/HomeUser'
+import ShowWorkout from '@/views/workouts/ShowWorkout'
 
 Vue.use(VueRouter)
 
@@ -25,7 +26,8 @@ Vue.use(VueRouter)
   { path: '/admin/exercises/new', component: NewExercise },
   { path: '/admin/exercises', component: Exercises },
   { path: '/admin/exercises/:id/edit', component: EditExercise },
-  { path: '/home/user', component: HomeUser }
+  { path: '/home/user', component: HomeUser },
+  { path: '/user/workouts/:id', component: ShowWorkout }
 ]
 
 const router = new VueRouter({

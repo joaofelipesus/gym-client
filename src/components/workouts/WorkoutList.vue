@@ -2,7 +2,7 @@
   <div :class="render">
     
     <div>
-      <div v-for="workout in workouts" :key="workout.id" class="card">
+      <div v-for="workout in workouts" :key="workout.id" @click.prevent="redirect_to_workout(workout.id)" class="card">
         <header class="card-header">
           <h4 class="card-header-title has-text-weight-bold">
             Treino {{ workout.name }}
@@ -32,6 +32,7 @@
 
 <script>
 import store from '../../store/training_routine_store'
+import router from '../../router/index'
 export default {
   data(){
     return {
@@ -61,6 +62,11 @@ export default {
         }
       }
     })
+  },
+  methods: {
+    redirect_to_workout(workout_id){
+      router.push(`/user/workouts/${workout_id}`)
+    }
   }
 }
 </script>

@@ -31,7 +31,7 @@ export default {
     }).catch(error => {
       if(error.response.status == 404){
         this.new_training_routine_modal = 'is-active'
-      } else {
+      } else {        
         console.log(error);
       }
     })
@@ -43,7 +43,7 @@ export default {
     create_training_routine(){
       TrainingRoutineService.create().then(response => {
         this.new_training_routine_modal = ''
-        store.dispatch('add_training_routine', response.data.training_routine)
+        store.dispatch('add_training_routine', JSON.parse(response.data.training_routine))
       }).catch(error => {
         console.log(error);
       })

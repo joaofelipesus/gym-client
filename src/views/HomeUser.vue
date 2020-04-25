@@ -5,6 +5,7 @@
     <WithoutWorkoutsModal />
     <WorkoutForm />
     <NewWorkoutModal />
+    <WorkoutList />
   </div>
 </template>
 
@@ -15,13 +16,15 @@ import TrainingRoutineModal from '../components/training_routine/TrainingRoutine
 import WorkoutForm from '../components/workouts/WorkoutForm'
 import WithoutWorkoutsModal from '../components/workouts/WithoutWorkoutsModal'
 import NewWorkoutModal from '../components/workouts/NewWorkoutModal'
+import WorkoutList from '../components/workouts/WorkoutList'
 export default {
   components: {
     UserNavbar,
     TrainingRoutineModal,
     WorkoutForm,
     WithoutWorkoutsModal,
-    NewWorkoutModal
+    NewWorkoutModal,
+    WorkoutList
   }
 }
 </script>

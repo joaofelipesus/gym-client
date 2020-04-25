@@ -8,6 +8,11 @@
             Treino {{ workout.name }}
           </h4>
         </header>
+        <div class="card-content">
+          Realizados {{ workout.workout_reports.length }} / {{ workout.classes_to_attend }}
+          <progress class="progress is-medium is-info" :value="workout.workout_reports.length" :max="workout.classes_to_attend">
+          </progress>
+        </div>
       </div>
     </div>
   </div>

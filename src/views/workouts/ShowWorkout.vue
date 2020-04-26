@@ -1,22 +1,17 @@
 <template>
   <div>
     <UserNavbar />
-
-    <ul>
-      
-      <li>Pegar workout do servidor</li>
-      <li>Exibir dados</li>
-      <li>Iniciar treino</li>
-    </ul>
-
+    <ShowWorkout />
   </div>
 </template>
 
 <script>
 import UserNavbar from '../../components/navbars/UserNavbar'
+import ShowWorkout from '../../components/workouts/ShowWorkout'
 export default {
   components: {
     UserNavbar,
-  }
+    ShowWorkout,
+  },
 }
 </script>

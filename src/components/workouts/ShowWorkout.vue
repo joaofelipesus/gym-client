@@ -11,7 +11,7 @@
 
     <hr>
 
-    <button class="is-primary">
+    <button @click="start_workout" class="is-primary">
       Iniciar Treino
     </button>
 
@@ -67,6 +67,8 @@
 
 <script>
 import WorkoutService from '@/services/WorkoutService'
+import WorkoutReportService from '@/services/WorkoutReportService'
+import router from '@/router/index'
 export default {
   data(){
     return {
@@ -77,13 +79,18 @@ export default {
     }
   },
   created(){
-    
     WorkoutService.show(this.$route.params.id).then(response => {
-      console.log(response);
       this.workout = response.data.workout
     }).catch(error => {
       console.log(error);
     })
+  },
+  methods: {
+    start_workout(){
+      WorkoutReportService.create(this.workout.id).then(response => {
+        router.push(`/user/workout_report/${response.data.workout_report.id}/progress`)
+      }).catch(error => console.log(error))
+    }
   }
 }
 </script>

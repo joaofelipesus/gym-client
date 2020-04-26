@@ -35,6 +35,10 @@
                       </div>
                     </div>
                     <div class="field">
+                      <label>Número de séries</label>
+                      <input v-model="series_number" id="series-number" type="number" required/>
+                    </div>
+                    <div class="field">
                       <label>Repetições</label>
                       <input v-model="repetitions" id="repetitions" type="number" required/>
                     </div>
@@ -56,6 +60,7 @@
                       </p>
                     </header>
                     <div style="overflow: auto;" class="card-content" :class="display_exercise_list[index]">
+                      <p>Número de séries: {{ workout_exercise.series_number }}</p>
                       <p>Repetições: {{ workout_exercise.repetitions }}</p>
                       <p>Tempo de descanço: {{ workout_exercise.rest_time }}</p>
                       <button @click.prevent="remove_workou_exercise(index)" class="button is-danger is-pulled-right is-small remove-exercise">
@@ -100,6 +105,7 @@ export default {
       display_workout_form: 'is-hidden',
       name: '',
       classes_to_attend: '',
+      series_number: '',
       rest_time: '',
       repetitions: '',
       workout_exercises: [],
@@ -141,7 +147,8 @@ export default {
         let workout_exercise = {
           exercise: exercise,
           rest_time: this.rest_time,
-          repetitions: this.repetitions
+          repetitions: this.repetitions,
+          series_number: this.series_number,
         }
         this.workout_exercises.push(workout_exercise)
         this._clean_exercise_fields()
@@ -171,7 +178,8 @@ export default {
         return {
           exercise_id: workout_exercise.exercise.id,
           repetitions: workout_exercise.repetitions,
-          rest_time: workout_exercise.rest_time
+          rest_time: workout_exercise.rest_time,
+          series_number: workout_exercise.series_number,
         }
       })
       let workout = {
@@ -193,6 +201,7 @@ export default {
       this.rest_time = ''
       this.repetitions = ''
       this.exercise_id = this.exercises[0].id
+      this.series_number = ''
     },
     _clean_workout_fields(){
       this.name = ''

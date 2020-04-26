@@ -18,6 +18,7 @@ import WithoutWorkoutsModal from '../components/workouts/WithoutWorkoutsModal'
 import NewWorkoutModal from '../components/workouts/NewWorkoutModal'
 import WorkoutList from '../components/workouts/WorkoutList'
 import WorkoutReportService from '../services/WorkoutReportService'
+import router from '@/router/index'
 
 export default {
   components: {
@@ -30,9 +31,10 @@ export default {
   },
   created(){
     WorkoutReportService.progress().then(response => {
-      console.log(response);
+      router.push(`/user/workout_report/${response.data.workout_report.id}/progress`)
     }).catch(error => {
-      console.log(error);
+      if (error.response.status !== 404)
+        console.log(error);
     })
   }
 

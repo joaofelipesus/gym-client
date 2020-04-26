@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="workout-progress-view">
     <UserNavbar /> 
     Treino em progresso .....
   </div>

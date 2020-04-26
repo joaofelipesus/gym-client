@@ -11,7 +11,7 @@
 
     <hr>
 
-    <button @click="start_workout" class="is-primary">
+    <button @click="start_workout" id="btn-start-workout" class="is-primary">
       Iniciar Treino
     </button>
 

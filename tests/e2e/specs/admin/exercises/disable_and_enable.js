@@ -1,4 +1,5 @@
 var Login  = require('../../../support/login')
+var faker = require('faker')
 
 module.exports = {
 
@@ -8,7 +9,15 @@ module.exports = {
   beforeEach : function (browser){
     Login.as_admin(browser)
           .click('#exercises-dropdown')
+          .click('#new-exercise')
+          .waitForElementVisible('#new-exercise-view')
+          .waitForElementVisible('#name')
+          .setValue('#name', faker.internet.ipv6())
+          .click('#btn-save')
+          .waitForElementVisible('#exercises-dropdown')
+          .click('#exercises-dropdown')
           .click('#exercises')
+          
           .waitForElementVisible('#exercises-list')
   },
   'it is expected to have disable class': browser => {

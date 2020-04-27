@@ -9,6 +9,7 @@ import EditExercise from '@/views/exercises/EditExercise'
 import HomeUser from '@/views/HomeUser'
 import ShowWorkout from '@/views/workouts/ShowWorkout'
 import ProgressWorkout from '@/views/workouts/ProgressWorkout'
+import NewExerciseReport from '@/views/exercise_reports/NewExerciseReport'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,7 @@ Vue.use(VueRouter)
   { path: '/home/user', component: HomeUser },
   { path: '/user/workouts/:id', component: ShowWorkout },
   { path: '/user/workout_report/:id/progress', component: ProgressWorkout },
+  { path: '/user/exercise_report/:id', component: NewExerciseReport }
 ]
 
 const router = new VueRouter({

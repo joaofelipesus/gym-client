@@ -10,8 +10,13 @@ export default {
   },
 
   async create(workout_id){
-    let response = axios.post('/workout_reports', { workout_report: { workout_id: workout_id }}, { headers: store.getters['headers'] })
+    let response = await axios.post('/workout_reports', { workout_report: { workout_id: workout_id }}, { headers: store.getters['headers'] })
     return response
   },
+
+  async update(workout_report){
+    let response = await axios.patch(`/workout_reports/${workout_report.id}`, {workout_report: workout_report}, { headers: store.getters['headers']})
+    return response
+  }
 
 }

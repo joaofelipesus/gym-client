@@ -5,6 +5,12 @@
       Treino {{ workout_report.workout.name }}
     </h3>
 
+    <div v-show="is_every_exercise_complete">
+      <button class="button is-danger is-outlined" style="margin-left: 10%; margin-right: 10%; width: 80%; margin-top: 5%;">
+        Concluir treino
+      </button>
+    </div>
+
     <hr>
 
     <div v-for="exercise_report in workout_report.exercise_reports" :key="exercise_report.id" class="card">
@@ -36,7 +42,8 @@ export default {
         workout: {
           name: ''
         }
-      }
+      },
+      is_every_exercise_complete: false,
     }
   },
   components: {
@@ -45,6 +52,9 @@ export default {
   created(){
     WorkoutReportService.progress().then(response => {      
       this.workout_report = response.data.workout_report
+      this.is_every_exercise_complete = this.workout_report.exercise_reports.every(exercise_report => {
+        return exercise_report.status == 'complete'
+      })
     }).catch(error => console.log(error))
   },
   methods: {

@@ -32,6 +32,7 @@
 import ExerciseReportService from '../../services/ExerciseReportService'
 import UserNavbar from '../../components/navbars/UserNavbar'
 import SeriesReportService from '../../services/SeriesReportService'
+import router from '../../router/index'
 export default {
   data(){
     return {
@@ -50,7 +51,7 @@ export default {
   },
   created(){
     let exercise_report_id = this.$route.params.id
-    ExerciseReportService.get(exercise_report_id).then(response => {
+    ExerciseReportService.get(exercise_report_id).then(response => {      
       let series_number = response.data.exercise_report.workout_exercise.series_number
       for (let index = 1; index <=  series_number;index++){
         let last_weight_used = 0
@@ -69,8 +70,8 @@ export default {
   },
   methods: {
     create_series_reports(){
-      SeriesReportService.create(this.series_reports).then(response => {
-        console.log(response)
+      SeriesReportService.create(this.series_reports).then(() => {
+        router.push(`/home/user`)
       }).catch(error => {
         console.log(error.response.data);
       })

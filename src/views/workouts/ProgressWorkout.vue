@@ -8,10 +8,10 @@
     <hr>
 
     <div v-for="exercise_report in workout_report.exercise_reports" :key="exercise_report.id" class="card">
-      <header class="card-header has-background-primary">
+      <header class="card-header" :class="card_header_background_color(exercise_report)">
         <p class="card-header-title has-text-white">{{ exercise_report.workout_exercise.exercise.name }}</p>
       </header>
-      <div class="card-content">
+      <div class="card-content" v-show="is_exercise_complete(exercise_report)">
         <p>Séries: {{ exercise_report.workout_exercise.series_number }}</p>
         <p>Repetições: {{ exercise_report.workout_exercise.repetitions }}</p>
         <p>Tempo de descanço: {{exercise_report.workout_exercise.rest_time }}</p>
@@ -43,13 +43,25 @@ export default {
     UserNavbar,
   },
   created(){
-    WorkoutReportService.progress().then(response => {
+    WorkoutReportService.progress().then(response => {      
       this.workout_report = response.data.workout_report
     }).catch(error => console.log(error))
   },
   methods: {
     redirect_to_new_exercise_report(exercise_report_id){
       router.push(`/user/exercise_report/${exercise_report_id}`)
+    },
+    is_exercise_complete(exercise_report){
+      if (exercise_report.status == 'complete')
+        return false
+      else
+        return true
+    },
+    card_header_background_color(exercise_report){
+      if(exercise_report.status == 'complete')
+        return 'has-background-info'
+      else
+        return 'has-background-primary'
     }
   }
 }

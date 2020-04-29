@@ -124,10 +124,11 @@ export default {
           name: exercise.name
         }
       })
-      this.exercise_id = this.exercises[0].id
-    }).catch(error => {
-      this.error = error.response.data.errors
+      if (this.exercises.length > 0)
+        this.exercise_id = this.exercises[0].id
+    }).catch(error => {      
       console.log(error);
+      this.error = error.response.data.errors
     })
     store.subscribe((mutation) => {
       if (mutation.type == 'display_workout_form'){

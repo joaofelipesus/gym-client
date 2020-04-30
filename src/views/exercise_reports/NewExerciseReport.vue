@@ -2,31 +2,45 @@
   <div>
     <UserNavbar />
 
-    <div class="card">
-      <header class="card-header has-background-primary">
+    <div class="panel is-primary">
+      <div class="panel-heading">
         <h2 class="card-header-title has-text-white is-size-5">
           {{ exercise_report.workout_exercise.exercise.name }}
         </h2>
-      </header>
-      <div class="card-content">
+      </div>
+      <div class="panle-block" style="padding-top: 5%;">
         <p> Séries: {{ exercise_report.workout_exercise.series_number }} </p>
         <p> Repetições: {{ exercise_report.workout_exercise.repetitions }} </p>
-        <p> Tempo de descanço: {{ exercise_report.workout_exercise.rest_time }} segundos </p>
+        <p> Tempo de descanço: {{ exercise_report.workout_exercise.rest_time }} </p>
+        <hr>
+      </div>
+      <div class="panel-block">
+        <form @submit.prevent="create_series_reports">
+          <div v-for="series in series_reports" :key="series.id" class="field">
+            <label class="label">Série {{ series.sequence_index}} </label>
+            <input v-model="series_reports[series.sequence_index - 1].weight_used" class="input" type="number" placeholder="Peso utilizado" />
+          </div>
+          <button class="button is-primary">
+            Salvar
+          </button>
+        </form>
       </div>
     </div>
 
-    <form @submit.prevent="create_series_reports">
-      <div v-for="series in series_reports" :key="series.id" class="field">
-        <label class="label">Série {{ series.sequence_index}} </label>
-        <input v-model="series_reports[series.sequence_index - 1].weight_used" class="input" type="number" placeholder="Peso utilizado" />
-      </div>
-      <button class="button is-primary">
-        Salvar
-      </button>
-    </form>
-
   </div>
 </template>
+
+<style lang="scss" scoped>
+  @import "bulma";
+  p{
+    margin-left: 5%;
+    @extend .is-size-4
+  }
+  .panel{
+    margin-top: 5%;
+  }
+
+</style>
 
 <script>
 import ExerciseReportService from '../../services/ExerciseReportService'

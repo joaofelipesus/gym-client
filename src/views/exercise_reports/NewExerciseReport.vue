@@ -18,7 +18,7 @@
         <form @submit.prevent="create_series_reports">
           <div v-for="series in series_reports" :key="series.id" class="field">
             <label class="label">Série {{ series.sequence_index}} </label>
-            <input v-model="series_reports[series.sequence_index - 1].weight_used" class="input" type="number" placeholder="Peso utilizado" />
+            <input v-model="series_reports[series.sequence_index - 1].weight_used" class="input" type="number" step="0.1" placeholder="Peso utilizado" />
           </div>
           <button class="button is-primary">
             Salvar

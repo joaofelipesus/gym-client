@@ -8,7 +8,7 @@
               .waitForElementVisible('#user-navbar')
 }*/
 
-module.exports = {
+/*module.exports = {
   beforeEach : browser => {
     browser.resizeWindow(500, 800);
   },
@@ -36,5 +36,5 @@ module.exports = {
       .click('#btn-login')
       .waitForElementVisible('#user-navbar')
       .assert.not.visible('#new-training-routine-modal')
-  }*/
-}
+  }
+}*/

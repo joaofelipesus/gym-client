@@ -2,7 +2,7 @@
   <div id="user-navbar">
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
+        <a @click.prevent="redirect_to_home" class="navbar-item">
           <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
         </a>
 
@@ -48,14 +48,6 @@
 
         <div class="navbar-end">
           <div class="navbar-item">
-            <!--<div class="buttons">
-              <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-light">
-                Log in
-              </a>
-            </div>-->
             <button @click.prevent="logout" class="button is-info">
               Sair
             </button>
@@ -86,6 +78,9 @@ export default {
     logout(){
       store.dispatch('logout')
       router.push('/')
+    },
+    redirect_to_home(){
+      router.push('/home/user')
     }
   },
 

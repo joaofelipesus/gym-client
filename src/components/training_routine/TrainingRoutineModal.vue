@@ -28,7 +28,7 @@ export default {
   created(){
     TrainingRoutineService.progress().then(response => {
       store.dispatch('add_training_routine', response.data.training_routine)
-    }).catch(error => {
+    }).catch(error => {      
       if(error.response.status == 404){
         this.new_training_routine_modal = 'is-active'
       } else {        

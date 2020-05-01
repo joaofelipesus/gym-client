@@ -7,7 +7,7 @@ cd /home/joao/Documents/gym-app/gym-client
 
 if [ -z "$1" ] # check if wasnt passed any argument
   then
-    yarn test:e2e
+    yarn test:e2e 
 else
   yarn test:e2e $1
 fi

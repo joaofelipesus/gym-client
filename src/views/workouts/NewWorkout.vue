@@ -1,5 +1,8 @@
 <template>
-  <div id="new-workout-form">
+  <div>
+    Novo workout !!!
+  </div>
+  <!--<div id="new-workout-form">
     <div id="workout-div" :class="display_workout_form">
       <div class="panel is-info">
         <p class="panel-heading">Novo treino</p>
@@ -78,7 +81,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 </template>
 
 <style lang="scss" scoped>
@@ -95,6 +98,7 @@
 </style>
 
 <script>
+/*
 import training_routine_store from '../../store/training_routine_store'
 import store from '../../store/workout_store'
 import ExerciseService from '../../services/ExerciseService'
@@ -217,4 +221,5 @@ export default {
     },
   }
 }
+*/
 </script>

@@ -2,7 +2,7 @@
   <div :class="render">
     
     <div>
-      <div v-for="workout in workouts" :key="workout.id" @click.prevent="redirect_to_workout(workout.id)" class="card">
+      <div v-for="workout in workouts" :key="workout.id" @click.prevent="redirect_to_workout(workout.id)" class="card workout-card">
         <header class="card-header">
           <h4 class="card-header-title has-text-weight-bold">
             Treino {{ workout.name }}

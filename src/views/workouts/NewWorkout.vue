@@ -1,9 +1,7 @@
 <template>
-  <div>
-    Novo workout !!!
-  </div>
-  <!--<div id="new-workout-form">
-    <div id="workout-div" :class="display_workout_form">
+  <div id="new-workout-form">
+    <UserNavbar />
+    <div id="workout-div">
       <div class="panel is-info">
         <p class="panel-heading">Novo treino</p>
         <div class="panel-block">
@@ -81,7 +79,7 @@
         </div>
       </div>
     </div>
-  </div>-->
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -98,15 +96,15 @@
 </style>
 
 <script>
-/*
+
 import training_routine_store from '../../store/training_routine_store'
 import store from '../../store/workout_store'
 import ExerciseService from '../../services/ExerciseService'
 import WorkoutService from '../../services/WorkoutService'
+import UserNavbar from '../../components/navbars/UserNavbar'
 export default {
   data(){    
     return {
-      display_workout_form: 'is-hidden',
       name: '',
       classes_to_attend: '',
       series_number: '',
@@ -119,6 +117,9 @@ export default {
       exercise_error_message: '',
       error: ''
     }
+  },
+  components: {
+    UserNavbar
   },
   created (){
     ExerciseService.fetch_active().then(response => {
@@ -221,5 +222,5 @@ export default {
     },
   }
 }
-*/
+
 </script>

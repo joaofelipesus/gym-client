@@ -44,8 +44,7 @@ module.exports = {
       .waitForElementVisible('#without-workout-modal')
       .assert.visible('#new-workout-button')
       .click('#new-workout-button')
-      .assert.not.visible('#without-workout-modal')
-      .assert.visible('#new-workout-form')
+      .assert.urlContains('/workouts/new')
       .end()
   }
 }

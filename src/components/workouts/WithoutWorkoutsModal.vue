@@ -20,7 +20,6 @@
 
 <script>
 import store from '../../store/training_routine_store'
-//import workout_store from '../../store/workout_store'
 import router from '../../router/index'
 export default {
   data(){
@@ -43,8 +42,6 @@ export default {
       this.display_modal = ''
     },
     render_form(){
-      //workout_store.dispatch('display_workout_form')
-      //this.display_modal = ''
       router.push('/user/workouts/new')
     },
   }

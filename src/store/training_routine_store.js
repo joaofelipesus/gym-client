@@ -20,7 +20,11 @@ export default new Vuex.Store({
   },
   getters: {
     training_routine(state){
-      return state.training_routine
+      if (state.training_routine != null)
+        return state.training_routine
+      else{
+        return localStorage.getItem('training_routine')
+      }
     },
   }
 })

@@ -23,6 +23,8 @@
 
 <script>
 import store from '../../store/workout_store'
+import router from '../../router'
+import workout_exercise_store from '../../store/workout_exercise_store'
 export default {
   data(){
     return {
@@ -31,17 +33,17 @@ export default {
   },
   created(){    
     store.subscribe((mutation) => {
-      if (mutation.type == 'set_workout'){
-        this.display_modal = store.getters['display_new_workout_modal']
+      if (mutation.type == 'display_modal'){
+        this.display_modal = 'is-active'
       }
     })
   },
   methods: {
     close_modal(){
-      this.display_modal = ''
+      router.push('/home/user')
     },
     render_form(){
-      store.dispatch('display_workout_form')
+      workout_exercise_store.dispatch('clean')
       this.display_modal = ''
     },
   }

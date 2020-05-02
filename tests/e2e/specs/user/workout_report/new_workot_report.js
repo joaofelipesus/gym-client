@@ -12,6 +12,15 @@ module.exports = {
   beforeEach : browser => {
     browser.resizeWindow(500, 800);
   },
+  'when click on workout-card is expected to be redirected to workout page, where user can start this workout': browser => {
+    login(browser, 'user@start.workout')
+    browser
+      .waitForElementVisible('.workout-card')
+      .assert.visible('.workout-card')
+      .click('.workout-card')
+      .assert.urlContains('user/workouts/')
+      .end()
+  },
   'create a new workout_report report': browser => {
     login(browser, 'start@workout.com')
     browser

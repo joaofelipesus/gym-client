@@ -6,7 +6,7 @@
     </h3>
 
     <div v-show="is_every_exercise_complete">
-      <button @click="finish_workout" class="button is-danger is-outlined" style="margin-left: 10%; margin-right: 10%; width: 80%; margin-top: 5%;">
+      <button @click="finish_workout" id="btn-finish-workout" class="button is-danger is-outlined" style="margin-left: 10%; margin-right: 10%; width: 80%; margin-top: 5%;">
         Concluir treino
       </button>
     </div>
@@ -21,7 +21,7 @@
         <p>Séries: {{ exercise_report.workout_exercise.series_number }}</p>
         <p>Repetições: {{ exercise_report.workout_exercise.repetitions }}</p>
         <p>Tempo de descanço: {{exercise_report.workout_exercise.rest_time }}</p>
-        <button @click.prevent="redirect_to_new_exercise_report(exercise_report.id)" class="button is-info  is-fullwidth is-outlined" id="btn-start-exercise" style="margin-top: 5%;">
+        <button id="btn-start-exercise" @click.prevent="redirect_to_new_exercise_report(exercise_report.id)" class="button is-info is-fullwidth is-outlined" style="margin-top: 5%;">
           Iniciar
         </button>
       </div>

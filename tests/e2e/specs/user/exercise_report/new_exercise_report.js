@@ -1,40 +1,50 @@
-/*function login_user_without_training_routine(browser){
+function login(browser, email){
   return browser
-              .url('http://localhost:8080/')
-              .waitForElementVisible('#login-form')
-              .setValue('#email', 'without@training.routine')
-              .setValue('#password', '123123')
-              .click('#btn-login')
-              .waitForElementVisible('#user-navbar')
-}*/
+    .url('http://localhost:8080/')
+    .waitForElementVisible('#login-form')
+    .setValue('#email', email)
+    .setValue('#password', '123123')
+    .click('#btn-login')
+    .waitForElementVisible('#user-navbar')
+    .waitForElementVisible('#btn-start-exercise')
+    .click('#btn-start-exercise')
+    .waitForElementVisible('#series-1')
+}
 
-/*module.exports = {
+module.exports = {
   beforeEach : browser => {
     browser.resizeWindow(500, 800);
   },
   'when user doesnt have a training routine in progress it is expected to render a modal asking him to create one': browser => {
-    login_user_without_training_routine(browser)
+    login(browser, 'exercise@report.com')
     browser
-      .assert.visible('#new-training-routine-modal')
-      .assert.visible('#new-training-routine')
+      .clearValue('#series-1')
+      .setValue('#series-1', 7.5)
+      .clearValue('#series-2')
+      .setValue('#series-2', 10)
+      .clearValue('#series-3')
+      .setValue('#series-3', 15.5)
+      .click('#btn-save')
+      .waitForElementVisible('#btn-finish-workout')
+      .assert.visible('#btn-finish-workout')
+      .assert.urlContains('/progress')
       .end()
   },
-  /*'close modal when click in close button' : browser => {
-    login_user_without_training_routine(browser)
+  'user finish workout' : browser => {
+    login(browser, 'finish@workout.report')
     browser
-      .assert.visible('.delete')
-      .click('.delete')
-      .assert.not.visible('#new-training-routine-modal')
+      .clearValue('#series-1')
+      .setValue('#series-1', 7.5)
+      .clearValue('#series-2')
+      .setValue('#series-2', 10)
+      .clearValue('#series-3')
+      .setValue('#series-3', 15.5)
+      .click('#btn-save')
+      .waitForElementVisible('#btn-finish-workout')
+      .click('#btn-finish-workout')
+      .waitForElementVisible('.workout-card')
+      .assert.visible('.workout-card')
+      .assert.urlContains('/home/user')
       .end()
   },
-  'expect that modal doesnt render when user has a training routine in progress' : browser => {
-    browser
-      .url('http://localhost:8080/')
-      .waitForElementVisible('#login-form')
-      .setValue('#email', 'with@training.routine')
-      .setValue('#password', '123123')
-      .click('#btn-login')
-      .waitForElementVisible('#user-navbar')
-      .assert.not.visible('#new-training-routine-modal')
-  }
-}*/
+}

@@ -8,6 +8,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
+import VueApexCharts from 'vue-apexcharts'
+
+Vue.use(VueApexCharts)
+Vue.component('apexchart', VueApexCharts)
 
 axios.defaults.baseURL = 'http://localhost:3000/';
 

@@ -8,7 +8,6 @@
   </div>
 </template>
 
-
 <script>
 import UserNavbar from '../components/navbars/UserNavbar'
 import TrainingRoutineModal from '../components/training_routine/TrainingRoutineModal'

@@ -11,6 +11,7 @@ import ShowWorkout from '@/views/workouts/ShowWorkout'
 import ProgressWorkout from '@/views/workouts/ProgressWorkout'
 import NewExerciseReport from '@/views/exercise_reports/NewExerciseReport'
 import NewWorkout from '@/views/workouts/NewWorkout'
+import SeriesReportProgression from '@/views/series_reports/SeriesReportProgression'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,7 @@ Vue.use(VueRouter)
   { path: '/user/workouts/:id', component: ShowWorkout },
   { path: '/user/workout_report/:id/progress', component: ProgressWorkout },
   { path: '/user/exercise_report/:id', component: NewExerciseReport },
+  { path: '/user/series_reports/:exercise_id/progression', component: SeriesReportProgression }
 ]
 
 const router = new VueRouter({

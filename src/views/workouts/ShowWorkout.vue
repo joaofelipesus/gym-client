@@ -18,10 +18,9 @@
     <table>
       <thead class="has-background-dark">
         <th class="has-text-white">Exercícios</th>
-        <th></th>
       </thead>
       <tbody>
-        <tr v-for="workout_exercise in workout.workout_exercises" :key="workout_exercise.id">
+        <tr v-for="workout_exercise in workout.workout_exercises" :key="workout_exercise.id" @click="progression(workout_exercise.exercise.id)">
           <td>
             {{ workout_exercise.exercise.name }}
           </td>
@@ -90,6 +89,9 @@ export default {
       WorkoutReportService.create(this.workout.id).then(response => {
         router.push(`/user/workout_report/${response.data.workout_report.id}/progress`)
       }).catch(error => console.log(error))
+    },
+    progression(exercise_id){
+      router.push(`/user/series_reports/${exercise_id}/progression`)
     }
   },
   components: {

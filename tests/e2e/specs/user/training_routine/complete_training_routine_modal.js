@@ -13,6 +13,7 @@ module.exports = {
   'it is expected to render complete_training_routine_modal when all workouts reach workouts.classes_to_attend' : browser => {
     login.as_user(browser, 'with@ll-workouts.complete')
     browser
+      .waitForElementVisible('#complete-training-routine-modal')
       .assert.visible('#complete-training-routine-modal')
       .end()
   },

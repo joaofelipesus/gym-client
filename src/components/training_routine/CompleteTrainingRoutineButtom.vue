@@ -1,21 +1,21 @@
 <template>
   <div>
     <hr>
-    <button @click="display_modal" class="button is-danger is-outlined">
+    <button @click="display_modal" id="btn-complete-training-routine">
       Encerrar rotina de treinos
     </button>
 
-    <div class="modal" :class='render_modal'>
+    <div id="btn-complete-training-routine-modal" class="modal" :class='render_modal'>
       <div @click="close_modal" class="modal-background"></div>
       <div class="modal-card">
         <section class="modal-card-body">
           <p class="modal-card-title">Tem certeza que deseja concluir a rotina de treinos ?</p>
         </section>
         <footer class="modal-card-foot">
-          <button @click="complete_training_routine" class="button is-success" style="margin-left: 10%">
+          <button @click="complete_training_routine" id="btn-complete" class="is-success" style="margin-left: 10%">
             Finalizar
           </button>
-          <button @click="close_modal" class="button is-danger is-outlined">
+          <button @click="close_modal" id="btn-close-complete-training-routine-button">
             Cancelar
           </button>
         </footer>
@@ -33,9 +33,14 @@
   }
 
   button{
+    @extend .button;
     width: 60%;
     margin-left: 20%;
     margin-right: 20%;
+  }
+
+  #btn-complete-training-routine, #btn-close-complete-training-routine-button{
+    @extend .is-outlined, .is-danger;
   }
 
 </style>

@@ -5,6 +5,7 @@
     <WithoutWorkoutsModal />
     <NewWorkoutModal />
     <WorkoutList />
+    <CompelteTrainingRoutineModal />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import NewWorkoutModal from '../components/workouts/NewWorkoutModal'
 import WorkoutList from '../components/workouts/WorkoutList'
 import WorkoutReportService from '../services/WorkoutReportService'
 import router from '@/router/index'
+import CompelteTrainingRoutineModal from '../components/training_routine/CompleteTrainingRoutineModal'
 
 export default {
   components: {
@@ -23,7 +25,8 @@ export default {
     TrainingRoutineModal,
     WithoutWorkoutsModal,
     NewWorkoutModal,
-    WorkoutList
+    WorkoutList,
+    CompelteTrainingRoutineModal,
   },
   created(){
     WorkoutReportService.progress().then(response => {

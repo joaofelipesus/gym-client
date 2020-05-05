@@ -4,8 +4,7 @@ import store from '../store/user_store'
 export default {
 
   async progress(){
-    const user = store.getters['user']
-    let response = await axios.get(`/workout_reports/${user.id}/progress`, { headers: store.getters['headers'] })
+    let response = await axios.get(`/workout_reports/progress`, { headers: store.getters['headers'] })
     return response
   },
 

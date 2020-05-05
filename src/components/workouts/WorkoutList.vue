@@ -1,6 +1,5 @@
 <template>
   <div :class="render">
-    
     <div>
       <div v-for="workout in workouts" :key="workout.id" @click.prevent="redirect_to_workout(workout.id)" class="card workout-card">
         <header class="card-header">
@@ -15,6 +14,7 @@
         </div>
       </div>
     </div>
+    <CompleteTrainingRoutineButton />
   </div>
 </template>
 
@@ -33,6 +33,7 @@
 <script>
 import store from '../../store/training_routine_store'
 import router from '../../router/index'
+import CompleteTrainingRoutineButton from '../training_routine/CompleteTrainingRoutineButtom'
 export default {
   data(){
     return {
@@ -67,6 +68,9 @@ export default {
     redirect_to_workout(workout_id){
       router.push(`/user/workouts/${workout_id}`)
     }
+  },
+  components: {
+    CompleteTrainingRoutineButton
   }
 }
 </script>

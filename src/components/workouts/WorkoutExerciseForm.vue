@@ -131,6 +131,7 @@ export default {
         this._clean_exercise_fields()
         this.display_exercise_list.push('is-hidden')
         store.dispatch('set_workout_exercises', this.workout_exercises)
+        window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
       }      
     },
     expand_workout_exercise_card(index){

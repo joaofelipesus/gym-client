@@ -1,5 +1,5 @@
 <template>
-  <div class="modal" :class="render">
+  <div id="complete-training-routine-modal" class="modal" :class="render">
     <div @click.prevent="close_modal" class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
@@ -12,10 +12,10 @@
         </p>
       </section>
       <footer class="modal-card-foot">
-        <button @click.prevent="complete_training_routine" class="button is-success">
+        <button @click.prevent="complete_training_routine" id="complete-training-routine" class="button is-success">
           Concluir rotina de treino
         </button>
-        <button @click.prevent="close_modal" class="button is-danger is-outlined">
+        <button @click.prevent="close_modal" id="close-complete-training-modal" class="button is-danger is-outlined">
           Fechar
         </button>
       </footer>

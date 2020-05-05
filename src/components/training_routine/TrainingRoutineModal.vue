@@ -10,7 +10,9 @@
         Notamos que não existe nenhuma rotina de treinamento em andamento, deseja criar uma agora ?
       </section>
       <footer class="modal-card-foot">
-        <button @click.prevent="create_training_routine" id="new-training-routine" class="button is-success">Criar nova rotina</button>
+        <button @click.prevent="create_training_routine" id="new-training-routine" class="button is-success">
+          Criar nova rotina
+        </button>
       </footer>
     </div>
   </div>
@@ -35,6 +37,11 @@ export default {
         console.log(error);
       }
     })
+    store.subscribe(mutation => {
+      if (mutation.type == 'complete_training_routine'){
+        this.new_training_routine_modal = 'is-active'
+      }
+    })
   },
   methods: {
     close_new_training_routine_modal(){
@@ -43,7 +50,7 @@ export default {
     create_training_routine(){
       TrainingRoutineService.create().then(response => {
         this.new_training_routine_modal = ''
-        store.dispatch('add_training_routine', JSON.parse(response.data.training_routine))
+        store.dispatch('add_training_routine', response.data.training_routine)
       }).catch(error => {
         console.log(error);
       })

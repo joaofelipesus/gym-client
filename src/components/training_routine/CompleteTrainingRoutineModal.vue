@@ -47,8 +47,8 @@ export default {
     complete_training_routine(){
       const training_routine_id = JSON.parse(store.getters['training_routine']).id
       const training_routine = { id: training_routine_id, status: "complete" }
-      TrainingRoutineService.update(training_routine).then(response => {
-        console.log(response)
+      TrainingRoutineService.update(training_routine).then(() => {
+        store.dispatch('complete')
         this.render = ''
       }).catch(error => console.log(error))
     }

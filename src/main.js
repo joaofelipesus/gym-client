@@ -16,7 +16,7 @@ Vue.component('apexchart', VueApexCharts)
 if (process.env.NODE_ENV == 'production')
   axios.defaults.baseURL = 'https://treinohype-api.herokuapp.com/'
 else
-  axios.defaults.baseURL = 'http://localhost:3000/'
+  axios.defaults.baseURL = 'http://10.0.1.2:3000/' //'http://localhost:3000/'
 
 
 library.add(fas)

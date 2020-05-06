@@ -13,6 +13,7 @@ import VueApexCharts from 'vue-apexcharts'
 Vue.use(VueApexCharts)
 Vue.component('apexchart', VueApexCharts)
 
+console.log(process.env.NODE_ENV)
 //axios.defaults.baseURL = 'http://localhost:3000/';
 axios.defaults.baseURL = 'https://treinohype-api.herokuapp.com/';
 

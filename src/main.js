@@ -13,7 +13,8 @@ import VueApexCharts from 'vue-apexcharts'
 Vue.use(VueApexCharts)
 Vue.component('apexchart', VueApexCharts)
 
-axios.defaults.baseURL = 'http://localhost:3000/';
+//axios.defaults.baseURL = 'http://localhost:3000/';
+axios.defaults.baseURL = 'https://treinohype-api.herokuapp.com/';
 
 library.add(fas)
 Vue.component('font-awesome-icon', FontAwesomeIcon)

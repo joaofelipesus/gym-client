@@ -1,9 +1,10 @@
 <template>
   <div id="user-navbar">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a @click.prevent="redirect_to_home" class="navbar-item">
-          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+          Meu Treino
+          <font-awesome-icon icon="dumbbell" class="has-text-white" style="margin-left: 8px;" />
         </a>
 
         <a @click="toggle_navbar" :class="navbar_status" role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -14,37 +15,6 @@
       </div>
 
       <div id="navbarBasicExample" class="navbar-menu" :class="navbar_status">
-        <div class="navbar-start">
-          <a class="navbar-item">
-            Home
-          </a>
-
-          <a class="navbar-item">
-            Documentation
-          </a>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              More
-            </a>
-
-            <div class="navbar-dropdown">
-              <a class="navbar-item">
-                About
-              </a>
-              <a class="navbar-item">
-                Jobs
-              </a>
-              <a class="navbar-item">
-                Contact
-              </a>
-              <hr class="navbar-divider">
-              <a class="navbar-item">
-                Report an issue
-              </a>
-            </div>
-          </div>
-        </div>
 
         <div class="navbar-end">
           <div class="navbar-item">
